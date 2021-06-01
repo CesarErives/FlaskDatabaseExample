@@ -2,3 +2,4 @@
 .env
 *vscode
 mongopass.txt
+__pycache__
