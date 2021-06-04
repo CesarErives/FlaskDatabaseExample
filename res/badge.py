@@ -2,6 +2,7 @@ from flask import jsonify,request
 from flask_restful import Resource,abort
 from flask_pymongo import pymongo
 from bson.json_util import ObjectId
+from werkzeug.wrappers import response
 import db_config as database
 
 class Badge(Resource):
@@ -46,6 +47,12 @@ class Badge(Resource):
         }})
         response['_id'] = str(response['_id'])
         return jsonify(response)
+    
+    def delete(self,by,data):
+        response=self.abort_if_not_exist(by,data)
+        database.db.Badge.delete_one({'_id':response['_id']})
+        response['_id'] =str(response['_id'])
+        return jsonify({"deleted":response})
 
     def abort_if_not_exist(self,by,data):
         if by == "_id":
