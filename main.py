@@ -1,4 +1,3 @@
-import re
 from flask import Flask, app,jsonify,request
 from flask_restful import Api
 from flask_pymongo import pymongo
