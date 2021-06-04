@@ -1,10 +1,7 @@
 import re
-from flask import Flask, app, json, jsonify,request
-from flask.wrappers import Response
+from flask import Flask, app,jsonify,request
 from flask_restful import Api
 from flask_pymongo import pymongo
-from bson.json_util import dumps,ObjectId
-from werkzeug.wrappers import response
 import db_config as database
 
 #Resources
@@ -35,7 +32,7 @@ def get_name_and_age():
 
 @app.route('/all/kids/')
 def get_kids():
-    response = list(database.db.Badge.find({'age':{"$lte": "21"}}, {'name':1,'age':1}))
+    response = list(database.db.Badge.find({'age':{"$lt": "21"}}, {'name':1,'age':1}))
 
     for document in response:
         document["_id"] = str(document['_id'])
