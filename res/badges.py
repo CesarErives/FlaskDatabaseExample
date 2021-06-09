@@ -120,14 +120,14 @@ class Badges(Resource):
             'followers':request.json[9]['followers']
                 }
 
-            ]).inserted_ids)
+        ]).inserted_ids)
 
-            results = []
+        results = []
 
-            for _id in _ids:
-                results.append(str(_id))
+        for _id in _ids:
+            results.append(str(_id))
 
-            return jsonify({'inserted_ids':results})
+        return jsonify({'inserted_ids':results})
 
     def delete(self):
         return database.db.Badge.delete_many({}).deleted_count
