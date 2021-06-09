@@ -6,6 +6,7 @@ import db_config as database
 #Resources
 from res.badge import Badge
 from res.badges import Badges
+from res.posts import Posts
 
 app=Flask(__name__)
 api=Api(app)
@@ -41,6 +42,7 @@ def get_kids():
 
 api.add_resource(Badge,'/new/','/<string:by>=<string:data>/')
 api.add_resource(Badges,'/all/', '/delete/all/')
+api.add_resource(Posts,'/new/post/<string:_id>', '/posts/<string:_id>','/<string:_id>/<string:uuid>')
 
 if __name__ == '__main__':
     app.run(load_dotenv=True)
